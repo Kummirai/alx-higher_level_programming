@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+vigation
+>>>>>>> acb76f7cff5fb585cfaa082e986f48651e3980e6
 0x0D. SQL - Introduction
 SQL
 MySQL
