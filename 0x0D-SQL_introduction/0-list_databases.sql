@@ -1,3 +1,2 @@
--- using show to display all databases
--- list all databases from my server
+--This script lists all databases in my SQL server
 SHOW DATABAES;
