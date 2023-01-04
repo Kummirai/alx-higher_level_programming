@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-''' This script lists all states from the database hbtn_0e_usa '''
+'''
+Displays all values in the states table of hbtn_0e_0_usa where name
+matches argument passed to script
+'''
 
 if __name__ == "__main__":
     import MySQLdb
@@ -15,12 +18,13 @@ if __name__ == "__main__":
     ''' cursor for multiple separate working envs thru one connection '''
     cur = db.cursor()
 
-    ''' execute SQL queries '''
-    cur.execute("SELECT * FROM states ORDER BY id")
+    ''' execute SQL queries with BINARY for byte-by-byte comparison '''
+    cur.execute("SELECT * FROM states WHERE BINARY name = '{}'\
+    ORDER BY id".format(argv[4]))
 
     ''' fetch all-at-once '''
     rows = cur.fetchall()
-    for col in rows:
-        print("{}".format(col))
+    for r in rows:
+        print("{}".format(r))
     cur.close()
     db.close()

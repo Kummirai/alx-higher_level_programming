@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' This script lists all states from the database hbtn_0e_usa '''
+''' This script lists all states with a name starting with N '''
 
 if __name__ == "__main__":
     import MySQLdb
@@ -15,12 +15,12 @@ if __name__ == "__main__":
     ''' cursor for multiple separate working envs thru one connection '''
     cur = db.cursor()
 
-    ''' execute SQL queries '''
-    cur.execute("SELECT * FROM states ORDER BY id")
+    ''' execute SQL queries with BINARY for byte-by-byte comparison '''
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id")
 
     ''' fetch all-at-once '''
     rows = cur.fetchall()
-    for col in rows:
-        print("{}".format(col))
+    for r in rows:
+        print("{}".format(r))
     cur.close()
     db.close()

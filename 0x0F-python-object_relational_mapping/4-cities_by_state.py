@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' This script lists all states from the database hbtn_0e_usa '''
+''' Script that lists all cities from the database hbtn_0e_4_usa '''
 
 if __name__ == "__main__":
     import MySQLdb
@@ -16,11 +16,16 @@ if __name__ == "__main__":
     cur = db.cursor()
 
     ''' execute SQL queries '''
-    cur.execute("SELECT * FROM states ORDER BY id")
+    cur.execute("\
+    SELECT cities.id, cities.name, states.name\
+    FROM cities\
+    JOIN states ON cities.state_id = states.id\
+    ORDER BY cities.id ASC\
+    ")
 
     ''' fetch all-at-once '''
     rows = cur.fetchall()
-    for col in rows:
-        print("{}".format(col))
+    for r in rows:
+        print("{}".format(r))
     cur.close()
     db.close()
