@@ -1,14 +1,15 @@
 #!/usr/bin/node
-
-const request = require('request');
-const fs = require('fs');
-const url = process.argv[2];
-const filePath = process.argv[3];
-
-request(url, function (err, response, body) {
+// Script that gets the contents of a webpage and stores it in a file
+let request = require('request');
+let fs = require('fs');
+request.get(process.argv[2], function (err, response, body) {
   if (err) {
-    console.log(err);
-  } else {
-    fs.writeFile(filePath, body, 'utf-8');
+    return console.log(err);
+  } else if (response.statusCode === 200) {
+    fs.writeFile(process.argv[3], body, 'utf8', function (err) {
+      if (err) {
+        return console.log(err);
+      }
+    });
   }
 });
