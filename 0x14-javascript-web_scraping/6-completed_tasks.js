@@ -1,21 +1,21 @@
 #!/usr/bin/node
-
-const request = require('request');
-const url = process.argv[2];
-
-request.get(
-                        url,
-                        function(err, res, body) {
-                                todos = JSON.parse(body);
-                                output = {};
-                                todos.forEach(function (todo, idx) {
-                                        if (todo.completed) {
-                        if (todo.userId in output) {
-                                output[todo.userId]++;
-                                } else {
-                                        output[todo.userId] = 1
-                                }
-                                        }
-                                });
-                                console.log(output);
+// Script that computes the number of tasks completed by user id
+let request = require('request');
+request.get(process.argv[2], function (err, response, body) {
+  if (err) {
+    return console.log(err);
+  } else if (response.statusCode === 200) {
+    let tasks = JSON.parse(body);
+    let done = {};
+    for (let task of tasks) {
+      if (task.completed === true) {
+        if (task.userId in done) {
+          done[task.userId] += 1;
+        } else {
+          done[task.userId] = 1;
+        }
+      }
+    }
+    console.log(done);
+  }
 });
