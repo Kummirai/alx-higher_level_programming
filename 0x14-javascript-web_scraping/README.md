@@ -21,3 +21,8 @@
 3. The content of the file must be written in utf-8
 4. If an error occurred during while writing, print the error object
 
+## Write a script that display the status code of a GET request.
+
+1. The first argument is the URL to request <(GET)>
+2. The status code must be printed like this: code: <status code>
+3. You must use the module <request>
