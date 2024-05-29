@@ -1,0 +1,7 @@
+# 0x15. JavaScript - Web jQuery
+  
+## 0 Write a JavaScript script that updates the text color of the <header> element to red (#FF0000):
+
+## 1 Write a JavaScript script that updates the text color of the <header> element to red (#FF0000):
+
+### 2Write a JavaScript script that updates the text color of the <header> element to red (#FF0000) when the user clicks on the tag DIV#red_header
